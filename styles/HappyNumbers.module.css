@@ -1,0 +1,33 @@
+.happyNumberContainer {
+    display: flex;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.card {
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #90BE6D;
+}
+
+.text {
+    font-size: 30px;
+    margin-top: 10px;
+    color: #232323;
+    font-weight: bold;
+
+}

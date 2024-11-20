@@ -1,0 +1,62 @@
+.aboutContainer {
+  padding: 20px;
+}
+
+.brandName {
+  color: #0070f3;
+  font-weight: bold;
+}
+
+.benefitsList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.benefitsList li {
+  margin-bottom: 10px;
+}
+
+.benefitsListItemContainer {
+  margin-left: 20px;
+}
+
+.button {
+  margin-top: 20px;
+}
+
+.card {
+  margin-top: 30px;
+  border-radius: 20px;
+  background-color: #FFFFFF;
+  padding: 20px 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.084);
+  color: black;
+  margin: 3px;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 16px rgba(80, 224, 193, 0.95);
+  cursor: pointer;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 769px) {
+  .gridContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

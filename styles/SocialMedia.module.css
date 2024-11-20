@@ -1,0 +1,62 @@
+.container {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.heading {
+    font-weight: bold;
+    line-height: 71px;
+    color: rgb(0, 0, 0);
+    font-size: 2rem;  
+}
+
+.iconsCotainer {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 10px;
+    flex-wrap: wrap;  
+}
+
+.iconCard {
+    font-size: 2rem;
+    color: #333;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconCard:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.iconCard svg {
+    font-size: 50px; 
+    padding: 10px;
+    background-color: #F4F4F9;
+    border-radius: 30px;
+}
+
+@media (max-width: 768px) {
+    .iconsCotainer {
+        gap: 20px;  
+    }
+    
+    .iconCard svg {
+        font-size: 40px;  
+    }
+}
+
+@media (max-width: 600px) {
+    .heading {
+        font-size: 1.5rem;  
+    }
+
+    .iconCard svg {
+        font-size: 35px;  
+    }
+}

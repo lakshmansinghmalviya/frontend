@@ -1,0 +1,47 @@
+.carouselContainer {
+  position: relative;
+  padding: 20px;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  transform: translate(0, -50%);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.slick-prev {
+  left: -50px;
+}
+
+.slick-next {
+  right: -50px;
+}
+
+.slick-prev svg,
+.slick-next svg {
+  color: white;
+}
+
+.prevArrow,
+.nextArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}

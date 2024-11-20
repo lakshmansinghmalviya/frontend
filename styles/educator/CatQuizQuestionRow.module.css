@@ -1,0 +1,76 @@
+.container {
+    padding: 0px 10px 10px 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+.title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.controlsContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.searchLabel {
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    color: #BCBCBC;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.searchField {
+    max-width: 150px;
+}
+
+.formControl {
+    margin: 1px;
+    min-width: 100px;
+    max-width: 150px;
+}
+
+.datePicker {
+    min-width: 200px;
+}
+
+.applyButton {
+    margin-left: 10px;
+}
+
+.resetButton {
+    margin: 0px 10px;
+}
+
+.newContainer {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0px 4px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.newContainer:hover {
+    background-color: #e3f2fd;
+}
+
+.addIcon {
+    color: #1976d2;
+}
+
+.newText {
+    font-weight: bold;
+    color: #1976d2;
+    margin-left: 8px;
+    padding-right: 6px;
+}
