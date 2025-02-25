@@ -2,9 +2,7 @@ import NotFound from '@/components/common/NotFound'
 import React from 'react'
 
 const error = () => {
-  return (
-    <NotFound />
-  )
+  return <NotFound />
 }
 
 export default error

@@ -21,8 +21,6 @@ export const apiCall = async <T>(
         };
 
         const response = await fetch(path, options);
-        console.log("data at api ", response);
-        console.log("comingdata.data");
         if (!response.ok) {
             const { message } = await response.json();
             throw new Error(message);

@@ -4,7 +4,6 @@ export const checkAtleastOneFieldIsFilledWithData = (options: Option[]): boolean
     for (let i = 0; i < options.length; i++) {
         if (options[i].optionPic == '/addPic.png' && options[i].text.trim().length == 0)
             return false;
-
         if (options[i].optionPic != '/addPic.png' && options[i].text.trim().length == 0)
             return true;
     }
@@ -12,7 +11,6 @@ export const checkAtleastOneFieldIsFilledWithData = (options: Option[]): boolean
 }
 
 export const twoOptionBlankArray = Array(2).fill({ id: -1, text: '', isCorrect: false, isSelected: false, optionPic: '/addPic.png' })
-
 
 export function capitalizeWords(input: string): string {
     return input

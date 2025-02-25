@@ -29,8 +29,7 @@ const NotAvailable = () => {
                     borderRadius: 2,
                     boxShadow: 5,
                     overflow: 'hidden',
-                }}
-            >
+                }}>
                 <CardContent>
                     <Typography variant="body2" color="text.secondary" textAlign="center">
                         The content you are looking for is not available. Please try again later.
