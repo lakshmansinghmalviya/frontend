@@ -19,7 +19,7 @@ export const apiCall = async <T>(
             headers,
             body: data ? JSON.stringify(data) : undefined,
         };
-
+        console.log("Path is going like "+path);
         const response = await fetch(path, options);
         if (!response.ok) {
             const { message } = await response.json();
