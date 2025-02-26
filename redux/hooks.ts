@@ -13,13 +13,15 @@ export const apiCall = async <T>(
     headers: Record<string, string>,
     data?: any
 ): Promise<UnifiedResponse<T>> => {
+
+    console.log("Sending the data like " + JSON.stringify(data));
     try {
         const options: RequestInit = {
             method,
             headers,
             body: data ? JSON.stringify(data) : undefined,
         };
-
+        console.log("The options are liek ====" + JSON.stringify(options));
         const response = await fetch(path, options);
         console.log("data at api ", response);
         console.log("comingdata.data");

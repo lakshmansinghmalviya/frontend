@@ -170,7 +170,7 @@ const UsersTable: React.FC = () => {
                                                         },
                                                     }}
                                                 >
-                                                    <TableCell align="left">{user.bio.substring(0, 20)}</TableCell>
+                                                    <TableCell align="left">{user?.bio?.substring(0, 20)}</TableCell>
                                                 </Tooltip>
                                                 <Tooltip title={user.education} placement="top"
                                                     enterDelay={300}
@@ -180,7 +180,7 @@ const UsersTable: React.FC = () => {
                                                         },
                                                     }}
                                                 >
-                                                    <TableCell align="left">{user.education.substring(0, 20)}</TableCell>
+                                                    <TableCell align="left">{user?.education?.substring(0, 20)}</TableCell>
                                                 </Tooltip>
                                                 <TableCell align="left">{user.role}</TableCell>
                                                 <TableCell

@@ -11,6 +11,7 @@ import { apiCall } from '../hooks';
 const getAuthUrl = (path: string) => `${QuizAppBaseUrl}/api/auth/${path}`;
 
 function* handleLogin(action: ReturnType<typeof loginRequest>) {
+    console.log("Login request is coming like ==" + getAuthUrl('login'));
     try {
         const response: UnifiedResponse<AuthResponse> = yield call(apiCall, getAuthUrl('login'), 'POST', getPublicHeader(), action.payload);
         yield put(authSuccess(response.data));
