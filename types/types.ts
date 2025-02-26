@@ -199,4 +199,3 @@ export interface Filters {
   severity?: Severity;
   toggle?: boolean;
 }
-

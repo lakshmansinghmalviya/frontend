@@ -21,10 +21,8 @@ export const apiCall = async <T>(
             headers,
             body: data ? JSON.stringify(data) : undefined,
         };
-        console.log("The options are liek ====" + JSON.stringify(options));
+        console.log("Path is going like "+path);
         const response = await fetch(path, options);
-        console.log("data at api ", response);
-        console.log("comingdata.data");
         if (!response.ok) {
             const { message } = await response.json();
             throw new Error(message);

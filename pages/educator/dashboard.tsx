@@ -3,10 +3,9 @@ import SidebarAndTable from '@/components/educator/SidebarAndTable';
 
 const EducatorDashboardPage: React.FC = () => {
   return (
-    <SidebarAndTable
+  <SidebarAndTable
       children={<EducatorProfile />}
-    />
-  );
+    />);
 };
 
 export default EducatorDashboardPage;

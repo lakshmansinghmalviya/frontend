@@ -9,7 +9,7 @@
     font-weight: bold;
     line-height: 71px;
     color: rgb(0, 0, 0);
-    font-size: 2rem;  
+    font-size: 2rem;
 }
 
 .iconsCotainer {
@@ -17,7 +17,7 @@
     justify-content: center;
     gap: 40px;
     margin-top: 10px;
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
 }
 
 .iconCard {
@@ -35,7 +35,7 @@
 }
 
 .iconCard svg {
-    font-size: 50px; 
+    font-size: 50px;    
     padding: 10px;
     background-color: #F4F4F9;
     border-radius: 30px;
@@ -43,20 +43,20 @@
 
 @media (max-width: 768px) {
     .iconsCotainer {
-        gap: 20px;  
+        gap: 20px;
     }
-    
+
     .iconCard svg {
-        font-size: 40px;  
+        font-size: 40px;
     }
 }
 
 @media (max-width: 600px) {
     .heading {
-        font-size: 1.5rem;  
+        font-size: 1.5rem;
     }
 
     .iconCard svg {
-        font-size: 35px;  
+        font-size: 35px;
     }
 }

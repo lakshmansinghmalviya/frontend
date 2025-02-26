@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 interface SidebarAndTableProps {
     children: ReactNode;
 }
+
 const SidebarAndTable: FC<SidebarAndTableProps> = ({ children }) => {
     return (
         <div style={{ display: 'flex' }}>
