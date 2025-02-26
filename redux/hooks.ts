@@ -13,8 +13,10 @@ export const apiCall = async <T>(
     headers: Record<string, string>,
     data?: any
 ): Promise<UnifiedResponse<T>> => {
-
+      
+    path = path.replace(/^https:\/\//, "http://");
     console.log("Sending the data like " + JSON.stringify(data));
+
     try {
         const options: RequestInit = {
             method,
