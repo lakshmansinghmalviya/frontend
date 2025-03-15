@@ -14,10 +14,7 @@ export default LoginPage;
 export const loginPageContainer = {
   backgroundImage: 'url(/loginBack.jpeg)',
   backgroundSize: 'cover',
-  width: '100vw',
-  height: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  width: '100%',
+  height: '100%', 
   backgroundColor: 'rgb(40, 252, 93)',
 };

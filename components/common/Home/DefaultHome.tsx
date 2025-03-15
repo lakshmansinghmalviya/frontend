@@ -60,20 +60,20 @@ export const DefaultHome = () => {
           contactRef={contactRef}
         />
         <GetStarted />
-        <div ref={latestQuizzesRef} >
+        {/* <div ref={latestQuizzesRef} >
           <LatestQuizzesBuzz />
-        </div>
-        <div ref={mentorsRef}>
+        </div> */}
+        {/* <div ref={mentorsRef}>
           <MeetEducators
             educators={users.content}
           />
-        </div>
+        </div> */}
         <div ref={aboutRef}>
           <About />
         </div>
         <HappyNumbers />
         <FAQs />
-        <div style={{ margin: '20px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', width: '100%' }}
+        <div style={{ margin: '20px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center'}}
           ref={contactRef}
         >
           <SocialMedia />

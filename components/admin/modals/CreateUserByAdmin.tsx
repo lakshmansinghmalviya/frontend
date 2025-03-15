@@ -277,7 +277,6 @@ const CreateUserByAdmin: React.FC<CreateUserByAdminProps> = ({ onClose }) => {
                   margin="normal"
                   variant="outlined"
                 />
-
               </div>
               <div style={buttonStyle}>
                 <Button variant="contained" color="primary" type="submit">

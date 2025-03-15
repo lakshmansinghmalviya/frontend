@@ -23,8 +23,8 @@ const MeetEducators: React.FC<MeetEducatorsProps> = ({ educators }) => {
     pauseOnHover: true,
     arrows: true,
     dots: true,
-    nextArrow: <div></div>,
-    prevArrow: <div></div>,
+    nextArrow: <div>=-=</div>,
+    prevArrow: <div>=-=</div>,
   };
   const educator = {
     profilePic: '/addPic.png',

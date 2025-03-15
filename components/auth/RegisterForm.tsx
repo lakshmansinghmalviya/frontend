@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { resetAuth, signupRequest } from '@/redux/slices/authSlice';
 import { RootState } from '@/redux/store';
-import styles from '@/styles/auth/SignupForm.module.css';
+import styles from '@/styles/auth/RegisterForm.module.css';
 import { Role, SignupData } from '@/types/types';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
@@ -25,7 +25,7 @@ import { useRouter } from 'next/router';
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-const SignupForm: React.FC = () => {
+const RegisterForm: React.FC = () => {
   const { authError, authMessage, auth } = useAppSelector((state: RootState) => state.auth);
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -318,4 +318,4 @@ const SignupForm: React.FC = () => {
   );
 };
 
-export default SignupForm;
+export default RegisterForm;

@@ -27,7 +27,6 @@ const categorySlice = createSlice({
     name: 'category',
     initialState,
     reducers: {
-
         createCategoryRequest(state, action: PayloadAction<Category>) {
             state.categoryLoading = true;
             state.categoryError = null;
@@ -54,7 +53,6 @@ const categorySlice = createSlice({
             state.categoryLoading = false;
             state.categoryError = null;
             state.categories = action.payload;
-            
         },
         fetchCategoriesFailure(state, action: PayloadAction<string>) {
             state.categoryLoading = false;
