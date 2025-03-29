@@ -42,7 +42,10 @@ const LoginForm: React.FC = () => {
 
   useEffect(() => {
     if (authMessage) {
-      localStorage.setItem('token', auth?.token);
+
+      localStorage.setItem('refToken', auth?.refToken);
+      localStorage.setItem('accessToken', auth?.accessToken);
+
       toast.success('Logged in successfully', { position: 'top-center' });
       if (auth?.role == 'Student') {
         router.replace('/student/dashboard');
@@ -88,7 +91,7 @@ const LoginForm: React.FC = () => {
     event.preventDefault();
   };
 
-  const goBack = () => {
+  const goBack = (): void => {
     router.back();
   }
 

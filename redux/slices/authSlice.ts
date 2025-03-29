@@ -10,7 +10,8 @@ interface AuthState {
 
 const initialState: AuthState = {
     auth: {
-        token: '',
+        accessToken: '',
+        refToken: '',
         role: Role.STUDENT,
         isApproved: false
     },

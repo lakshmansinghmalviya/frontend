@@ -23,7 +23,7 @@ export function capitalizeWords(input: string): string {
 }
 
 export const getAuthenticatedHeader = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
     return {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,

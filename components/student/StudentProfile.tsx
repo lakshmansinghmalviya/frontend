@@ -24,7 +24,7 @@ const StudentProfile: React.FC = () => {
     const [editingUser, setEditingUser] = useState<User | null>(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('accessToken');
         if (token) {
             dispatch(fetchUserRequest());
             dispatch(fetchUserResultDataRequest());

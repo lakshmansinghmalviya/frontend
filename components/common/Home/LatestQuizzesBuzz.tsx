@@ -19,7 +19,7 @@ const LatestQuizzesBuzz = () => {
 
   useEffect(() => {
     dispatch(fetchQuizzesRequest(''));
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
     if (token) {
       dispatch(fetchUserRequest());
     }

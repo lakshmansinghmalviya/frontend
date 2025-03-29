@@ -77,7 +77,7 @@ const About: React.FC = () => {
                 maxWidth: { xs: '100%', sm: '45%', md: '40%', lg: '40%' },
                 marginBottom: '20px'
               }}>
-              <Typography variant="h6"><b>Lakshman Malviya</b></Typography>
+              <Typography variant="h6"><b>Lakshman Singh</b></Typography>
               <Typography variant="body2" fontSize={16}>
                 Co-Founder & Senior Developer
                 Lakshman brings his expertise in software development to ensure Quizzy is smooth, fast, and filled with awesome features.

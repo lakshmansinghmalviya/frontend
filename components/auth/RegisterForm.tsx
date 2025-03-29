@@ -51,7 +51,10 @@ const RegisterForm: React.FC = () => {
 
   useEffect(() => {
     if (authMessage) {
-      localStorage.setItem('token', auth?.token);
+
+      localStorage.setItem('refToken', auth?.refToken);
+      localStorage.setItem('accessToken', auth?.accessToken);
+
       toast.success('User registered successfully', { position: 'top-center' });
       if (auth?.role == 'Student') {
         router.replace('/student/dashboard');
@@ -103,6 +106,7 @@ const RegisterForm: React.FC = () => {
   };
 
   const validateForm = (): boolean => {
+    // debugger
     let valid = true;
     let nameError = '';
     let emailError = '';
@@ -163,6 +167,9 @@ const RegisterForm: React.FC = () => {
     event.preventDefault();
   };
 
+  const goBack = (): void => {
+    router.back();
+  }
 
   return (
     <Paper elevation={3}
@@ -171,7 +178,7 @@ const RegisterForm: React.FC = () => {
       <Box p={4}>
         <Typography variant="h5" gutterBottom component="div" style={{ display: 'flex', justifyContent: 'center' }}>
           <Link href=''>
-            <img src="/quizzy.png" />
+            <img src="/quizzy.png" onClick={goBack} />
           </Link>
         </Typography>
         <Typography variant="h4" gutterBottom className={styles.title}>

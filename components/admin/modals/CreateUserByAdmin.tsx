@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { resetAuth, signupRequest } from '@/redux/slices/authSlice';
 import { RootState } from '@/redux/store';
-import styles from '@/styles/auth/SignupForm.module.css';
+import styles from '@/styles/auth/RegisterForm.module.css';
 import { buttonStyle, modalStyle } from '@/styles/CommonStyle.module';
 import { Role, SignupData } from '@/types/types';
 import { Visibility, VisibilityOff } from '@mui/icons-material';

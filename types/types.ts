@@ -26,7 +26,8 @@ export interface SignupData {
 }
 
 export interface AuthResponse {
-  token: string;
+  accessToken: string;
+  refToken: string;
   role: Role;
   isApproved: boolean;
 }

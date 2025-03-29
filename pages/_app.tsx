@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
     if (router.pathname != '/login' && router.pathname != '/signup' && router.pathname != '/') {
       if (!token) {
         router.replace('/');

@@ -2,8 +2,9 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { fetchUserRequest } from '@/redux/slices/usersSlice';
 import { RootState } from '@/redux/store';
 import styles from '@/styles/Navbar.module.css';
+import { User } from '@/types/types';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 interface NavbarProps {
@@ -15,13 +16,21 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ latestQuizzesRef, mentorsRef, aboutRef, contactRef }) => {
   const router = useRouter();
-  const { user } = useAppSelector((state: RootState) => state.user);
+  const { user, userMessage } = useAppSelector((state: RootState) => state.user);
+  const [userData, setUserData] = useState<User>({ ...user });
+
   const dispatch = useAppDispatch();
-  let token = '';
   useEffect(() => {
-    token = localStorage.getItem('token') as string;
+    debugger
     dispatch(fetchUserRequest())
   }, [])
+
+  useEffect(() => {
+    debugger
+    setUserData({
+      ...user
+    })
+  }, [userMessage])
 
   const navigateToLogin = () => {
     router.push('/login')
@@ -36,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({ latestQuizzesRef, mentorsRef, aboutRef,
   }
 
   const navigateToDashboard = () => {
-    if (user.role == 'Student') {
+    if (userData.role == 'Student') {
       router.push('/student/dashboard');
     } else {
       router.push('/educator/dashboard');
@@ -81,13 +90,13 @@ const Navbar: React.FC<NavbarProps> = ({ latestQuizzesRef, mentorsRef, aboutRef,
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {
-          user.password.trim().length == 0 &&
+          userData.password.trim().length == 0 &&
           <>
             <button className={styles.loginButton} onClick={navigateToLogin}>Login</button>
             <button className={styles.signupButton} onClick={navigateToSignup}>Sign Up</button>
           </>
         }
-        {user.password.trim().length != 0 &&
+        {userData.password.trim().length != 0 &&
           <button className={styles.signupButton} onClick={navigateToDashboard}>Dashboard</button>
         }
       </div>
