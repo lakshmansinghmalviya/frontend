@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { resetAuth, signupRequest } from '@/redux/slices/authSlice';
 import { RootState } from '@/redux/store';
+import { setLocalStorage } from '@/services/CommonServices';
 import styles from '@/styles/auth/RegisterForm.module.css';
 import { Role, SignupData } from '@/types/types';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -52,9 +53,9 @@ const RegisterForm: React.FC = () => {
   useEffect(() => {
     if (authMessage) {
 
-      localStorage.setItem('refToken', auth?.refToken);
-      localStorage.setItem('accessToken', auth?.accessToken);
-
+      setLocalStorage('refToken', auth?.refToken);
+      setLocalStorage('accessToken', auth?.accessToken);
+      
       toast.success('User registered successfully', { position: 'top-center' });
       if (auth?.role == 'Student') {
         router.replace('/student/dashboard');

@@ -2,7 +2,8 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { fetchUserResultDataRequest } from '@/redux/slices/resultSlice';
 import { fetchUserRequest } from '@/redux/slices/usersSlice';
 import { RootState } from '@/redux/store';
-import { getInitials, giveTime, isBase64 } from '@/services/CommonServices';
+import { getAccessToken, getInitials, giveTime, isBase64 } from '@/services/CommonServices';
+import styles from '@/styles/educator/EducatorTable.module.css';
 import { User } from '@/types/types';
 import { Edit } from '@mui/icons-material';
 import {
@@ -15,7 +16,6 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import EditProfileModal from '../educator/modals/EditProfileModal';
-import styles from '@/styles/educator/EducatorTable.module.css';
 
 const StudentProfile: React.FC = () => {
     const { user } = useAppSelector((state: RootState) => state.user);
@@ -24,7 +24,7 @@ const StudentProfile: React.FC = () => {
     const [editingUser, setEditingUser] = useState<User | null>(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('accessToken');
+        const token = getAccessToken();
         if (token) {
             dispatch(fetchUserRequest());
             dispatch(fetchUserResultDataRequest());

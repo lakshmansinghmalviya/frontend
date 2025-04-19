@@ -1,23 +1,23 @@
-import { store, persistor } from "@/redux/store";
+import { persistor, store } from "@/redux/store";
+import { getRefreshToken } from "@/services/CommonServices";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
-export const QuizAppBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+import { PersistGate } from "redux-persist/integration/react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
+    const token = getRefreshToken();
+    console.log("Another component loaded..");
     if (router.pathname != '/login' && router.pathname != '/signup' && router.pathname != '/') {
       if (!token) {
-        router.replace('/');
+        router.push('/');
       }
     }
   }, [pageProps, Component]);
@@ -25,11 +25,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Component {...pageProps} />
-        <ToastContainer />
-      </PersistGate>/
-    </Provider>
+        <PersistGate loading={null} persistor={persistor}>
+          <Component {...pageProps} />
+          <ToastContainer />
+        </PersistGate>
+      </Provider>
     </>
   )
 }

@@ -16,7 +16,7 @@ import feedbackReducer from './slices/feedbackSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
-// 🔹 Combine all reducers
+//  Combine all reducers
 const rootReducer = combineReducers({
   auth: authReducer,
   props: propsReducer,
@@ -29,10 +29,11 @@ const rootReducer = combineReducers({
   feedback: feedbackReducer,
 });
 
-// 🔹 Apply Redux Persist to persist the entire store
+//  Apply Redux Persist to persist the entire store
 const persistConfig = {
   key: 'root',
   storage, // Uses localStorage
+  blacklist: ['auth']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -43,10 +44,10 @@ export const store = configureStore({
     getDefaultMiddleware({ serializableCheck: false }).concat(sagaMiddleware),
 });
 
-// 🔹 Create Persistor
+//  Create Persistor
 export const persistor = persistStore(store);
 
-// 🔹 Run Saga Middleware
+//  Run Saga Middleware
 sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;

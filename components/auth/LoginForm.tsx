@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { loginRequest, resetAuth } from '@/redux/slices/authSlice';
 import { fetchUserRequest, resetUserMessage } from '@/redux/slices/usersSlice';
 import { RootState } from '@/redux/store';
+import { setLocalStorage } from '@/services/CommonServices';
 import styles from '@/styles/auth/LoginForm.module.css';
 import { LoginData } from '@/types/types';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -43,8 +44,8 @@ const LoginForm: React.FC = () => {
   useEffect(() => {
     if (authMessage) {
 
-      localStorage.setItem('refToken', auth?.refToken);
-      localStorage.setItem('accessToken', auth?.accessToken);
+      setLocalStorage('refToken', auth?.refToken);
+      setLocalStorage('accessToken', auth?.accessToken);
 
       toast.success('Logged in successfully', { position: 'top-center' });
       if (auth?.role == 'Student') {
@@ -151,7 +152,7 @@ const LoginForm: React.FC = () => {
                 Log In
               </Button>
               <Typography sx={{ textAlign: 'center', marginTop: '10px' }}>
-                Don&apos;t have an account?{' '}
+                Don't have an account?{' '}
                 <span
                   onClick={navigateToSignup}>
                   <Link

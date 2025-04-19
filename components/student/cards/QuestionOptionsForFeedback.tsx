@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { createFeedbackRequest, updateFeedbackState } from '@/redux/slices/feedbackSlice';
 import { RootState } from '@/redux/store';
 import { toast } from 'react-toastify';
+import { getLocalStorage } from '@/services/CommonServices';
 
 interface QuestionOptionsForFeedbackProps {
     presentQuestion: Question;
@@ -22,7 +23,7 @@ const QuestionOptionsForFeedback: React.FC<QuestionOptionsForFeedbackProps> = ({
     const [feedbackData, setFeedbackData] = useState<Feedback>({
         ...feedback,
         questionId: attemptedQuestion.id,
-        id: Number(localStorage.getItem('id')),
+        id: Number(getLocalStorage('id')),
     });
 
     useEffect(() => {

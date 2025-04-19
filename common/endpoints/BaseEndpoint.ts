@@ -1,0 +1,1 @@
+export const quizAppBaseUrl = "http://localhost:7000"

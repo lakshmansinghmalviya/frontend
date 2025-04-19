@@ -22,20 +22,6 @@ export function capitalizeWords(input: string): string {
         .join(' ');
 }
 
-export const getAuthenticatedHeader = () => {
-    const token = localStorage.getItem('accessToken');
-    return {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-    }
-}
-
-export const getPublicHeader = () => {
-    return {
-        'Content-Type': 'application/json',
-    }
-}
-
 export const isBase64 = (str: string | undefined): string => {
     const base64Regex = /^data:image\/[a-zA-Z]+;base64,/;
     if (base64Regex.test(str ?? ''))
@@ -58,20 +44,6 @@ export const getInitials = (name: string): string => {
     const lastInitial = nameParts[1] ? nameParts[1][0] : '';
     return `${initials}${lastInitial}`.toUpperCase();
 };
-
-export const getPageObject = <T>(): PageResponse<T> => {
-    return {
-        content: [],
-        pageNumber: 0,
-        pageSize: 5,
-        totalElements: 0,
-        totalPages: 0,
-    };
-};
-
-export const logout = () => {
-    localStorage.clear();
-}
 
 export const checkApproval = (user: User) => {
     if (user.role == 'Student')
@@ -118,6 +90,60 @@ export const giveDate = (createdAt: string): string => {
     const date = new Date(createdAt);
     return date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
 }
+
+export const getPageObject = <T>(): PageResponse<T> => {
+    return {
+        content: [],
+        pageNumber: 0,
+        pageSize: 5,
+        totalElements: 0,
+        totalPages: 0,
+    };
+};
+
+export const logout = () => {
+    localStorage.clear();
+}
+
+export const getAccessToken = () => {
+    return localStorage.getItem('accessToken') ?? '';
+}
+
+export const getRefreshToken = () => {
+    return localStorage.getItem('refToken') ?? '';
+}
+
+export const getLocalStorage = (name: string) => {
+    return localStorage.getItem(name);
+}
+
+export const setLocalStorage = (key: string, value: any) => {
+    return localStorage.setItem(key, value);
+}
+
+
+export const getAuthenticatedHeader = () => {
+    const token = localStorage.getItem('accessToken');
+    return {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+    }
+}
+
+export const getAuthenticatedHeaderWithRefToken = () => {
+    const token = localStorage.getItem('refToken');
+    return {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+    }
+}
+
+export const getPublicHeader = () => {
+    return {
+        'Content-Type': 'application/json',
+    }
+}
+
 
 export const quizSortingOptions = [
     { id: 'title:asc', name: 'Title ASC' },

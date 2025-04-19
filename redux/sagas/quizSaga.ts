@@ -1,4 +1,4 @@
-import { QuizAppBaseUrl } from '@/pages/_app';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import {
     createQuizFailure,
     createQuizRequest,
@@ -11,20 +11,18 @@ import {
     fetchQuizzesSuccess,
     updateQuizFailure,
     updateQuizRequest,
-    updateQuizSuccess
+    updateQuizSuccess,
 } from '@/redux/slices/quizSlice';
-import { getAuthenticatedHeader, getPublicHeader } from '@/services/CommonServices';
-import { PageResponse, Quiz, UnifiedResponse } from '@/types/types';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { getAuthenticatedHeader } from '@/services/CommonServices';
+import { Quiz, PageResponse, UnifiedResponse } from '@/types/types';
 import { apiCall } from '../hooks';
-
-const getBaseUrl = () => `${QuizAppBaseUrl}/quizzes`;
+import { quizEndpoints } from '@/common/endpoints/QuizEnpoint';
 
 function* handleCreateQuiz(action: ReturnType<typeof createQuizRequest>) {
     try {
         const response: UnifiedResponse<Quiz> = yield call(
             apiCall,
-            getBaseUrl(),
+            quizEndpoints.base,
             'POST',
             getAuthenticatedHeader(),
             action.payload
@@ -37,18 +35,15 @@ function* handleCreateQuiz(action: ReturnType<typeof createQuizRequest>) {
 
 function* handleFetchQuizzes(action: ReturnType<typeof fetchQuizzesRequest>) {
     try {
-        let path = `${getBaseUrl()}/filters?${action.payload}`;
+        const path = quizEndpoints.filters(action.payload);
         const response: UnifiedResponse<PageResponse<Quiz>> = yield call(
             apiCall,
             path,
             'GET',
-            getAuthenticatedHeader(),
+            getAuthenticatedHeader()
         );
-
-
         yield put(fetchQuizzesSuccess(response.data));
-    }
-    catch (error) {
+    } catch (error) {
         yield put(fetchQuizzesFailure((error as Error).message));
     }
 }
@@ -57,7 +52,7 @@ function* handleDeleteQuiz(action: ReturnType<typeof deleteQuizRequest>) {
     try {
         const response: UnifiedResponse<string> = yield call(
             apiCall,
-            `${QuizAppBaseUrl}/quizzes/${action.payload}`,
+            quizEndpoints.deleteById(action.payload),
             'DELETE',
             getAuthenticatedHeader()
         );
@@ -72,7 +67,7 @@ function* handleUpdateQuiz(action: ReturnType<typeof updateQuizRequest>) {
         const { id, ...updatedQuiz } = action.payload;
         const response: UnifiedResponse<string> = yield call(
             apiCall,
-            `${QuizAppBaseUrl}/quizzes/${id}`,
+            quizEndpoints.updateById(id),
             'PUT',
             getAuthenticatedHeader(),
             updatedQuiz

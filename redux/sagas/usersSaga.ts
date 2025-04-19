@@ -1,4 +1,4 @@
-import { QuizAppBaseUrl } from '@/pages/_app';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import {
     deleteUserFailure,
     deleteUserRequest,
@@ -9,22 +9,16 @@ import {
     fetchEducatorProfileDataFailure, fetchEducatorProfileDataRequest, fetchEducatorProfileDataSuccess,
     fetchUserFailure, fetchUserRequest, fetchUsersFailure, fetchUsersRequest, fetchUsersSuccess, fetchUserSuccess,
     logoutUserFailure, logoutUserRequest, logoutUserSuccess,
-    updateUserFailure, updateUserRequest, updateUserSuccess
+    updateUserFailure, updateUserRequest, updateUserSuccess,
 } from '@/redux/slices/usersSlice';
 import { getAuthenticatedHeader } from '@/services/CommonServices';
 import { AdminProfileData, EducatorProfileData, PageResponse, UnifiedResponse, User } from '@/types/types';
-import { call, put, takeLatest } from 'redux-saga/effects';
 import { apiCall } from '../hooks';
-
-const getBaseUrl = () => `${QuizAppBaseUrl}/users`;
-const getUserUrl = () => `${QuizAppBaseUrl}/users/currentUser`;
-const getLogoutUrl = () => `${QuizAppBaseUrl}/users/logout`;
-const getEducatorProfileUrl = () => `${QuizAppBaseUrl}/users/educatorProfileData`;
-const getAdminProfileUrl = () => `${QuizAppBaseUrl}/users/adminProfileData`;
+import { usersEndpoints } from '@/common/endpoints/UserEndpoint';
 
 function* handleFetchUser() {
     try {
-        const response: UnifiedResponse<User> = yield call(apiCall, getUserUrl(), 'GET', getAuthenticatedHeader());
+        const response: UnifiedResponse<User> = yield call(apiCall, usersEndpoints.currentUser, 'GET', getAuthenticatedHeader());
         yield put(fetchUserSuccess(response.data));
     } catch (error) {
         yield put(fetchUserFailure((error as Error).message));
@@ -32,14 +26,12 @@ function* handleFetchUser() {
 }
 
 function* handleFetchUsers(action: ReturnType<typeof fetchUsersRequest>) {
-    let path = `${QuizAppBaseUrl}/users/filters?${action.payload}`
-    if (action.payload.startsWith("public"))
-        path = `${QuizAppBaseUrl}/users/filters/public?${action.payload.substring(6)}`
+    let path = usersEndpoints.filters(action.payload);
+    if (action.payload.startsWith("public")) {
+        path = `${usersEndpoints.filters("public")}?${action.payload.substring(6)}`;
+    }
     try {
-        console.log("path....", path);
-        const response: UnifiedResponse<PageResponse<User>> = yield call(apiCall, path, 'GET',
-            getAuthenticatedHeader());
-        console.log("Data we got from the Api...", response.data);
+        const response: UnifiedResponse<PageResponse<User>> = yield call(apiCall, path, 'GET', getAuthenticatedHeader());
         yield put(fetchUsersSuccess(response.data));
     } catch (error) {
         yield put(fetchUsersFailure((error as Error).message));
@@ -48,7 +40,7 @@ function* handleFetchUsers(action: ReturnType<typeof fetchUsersRequest>) {
 
 function* handleLogoutUser() {
     try {
-        yield call(apiCall, getLogoutUrl(), 'PUT', getAuthenticatedHeader());
+        yield call(apiCall, usersEndpoints.logout, 'PUT', getAuthenticatedHeader());
         yield put(logoutUserSuccess());
     } catch (error) {
         yield put(logoutUserFailure((error as Error).message));
@@ -57,7 +49,13 @@ function* handleLogoutUser() {
 
 function* handleUpdateUser(action: ReturnType<typeof updateUserRequest>) {
     try {
-        const response: UnifiedResponse<User> = yield call(apiCall, `${getBaseUrl()}/${action.payload.id}`, 'PUT', getAuthenticatedHeader(), action.payload);
+        const response: UnifiedResponse<User> = yield call(
+            apiCall,
+            usersEndpoints.getById(action.payload.id),
+            'PUT',
+            getAuthenticatedHeader(),
+            action.payload
+        );
         yield put(updateUserSuccess(response.data));
     } catch (error) {
         yield put(updateUserFailure((error as Error).message));
@@ -68,7 +66,7 @@ function* handleDeleteUser(action: ReturnType<typeof deleteUserRequest>) {
     try {
         const response: UnifiedResponse<string> = yield call(
             apiCall,
-            `${getBaseUrl()}/${action.payload}`,
+            usersEndpoints.getById(action.payload),
             'DELETE',
             getAuthenticatedHeader()
         );
@@ -78,10 +76,14 @@ function* handleDeleteUser(action: ReturnType<typeof deleteUserRequest>) {
     }
 }
 
-
 function* handleFetchEducatorProfileData() {
     try {
-        const response: UnifiedResponse<EducatorProfileData> = yield call(apiCall, getEducatorProfileUrl(), 'GET', getAuthenticatedHeader());
+        const response: UnifiedResponse<EducatorProfileData> = yield call(
+            apiCall,
+            usersEndpoints.educatorProfileData,
+            'GET',
+            getAuthenticatedHeader()
+        );
         yield put(fetchEducatorProfileDataSuccess(response.data));
     } catch (error) {
         yield put(fetchEducatorProfileDataFailure((error as Error).message));
@@ -90,7 +92,12 @@ function* handleFetchEducatorProfileData() {
 
 function* handleFetchAdminProfileData() {
     try {
-        const response: UnifiedResponse<AdminProfileData> = yield call(apiCall, getAdminProfileUrl(), 'GET', getAuthenticatedHeader());
+        const response: UnifiedResponse<AdminProfileData> = yield call(
+            apiCall,
+            usersEndpoints.adminProfileData,
+            'GET',
+            getAuthenticatedHeader()
+        );
         yield put(fetchAdminProfileDataSuccess(response.data));
     } catch (error) {
         yield put(fetchAdminProfileDataFailure((error as Error).message));

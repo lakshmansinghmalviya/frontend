@@ -13,6 +13,7 @@ import QuestionOptions from './cards/QuestionOptions';
 import TimeCard from './cards/TimeCard';
 import ConfirmModal from './modals/ConfirmModal';
 import ResultModal from './modals/ResultModal';
+import { setLocalStorage } from '@/services/CommonServices';
 
 
 const AttempQuiz: React.FC = () => {
@@ -70,8 +71,8 @@ const AttempQuiz: React.FC = () => {
     const calculatedResult = await giveQuizResult(questionsData, questionsForAttempt,
       quiz.timeLimit, timeLeft.current, resultData);
     setResultData(calculatedResult);
-    localStorage.setItem('presentQuestions', JSON.stringify(questionsData))
-    localStorage.setItem('attemptedQuestions', JSON.stringify(questionsForAttempt))
+    setLocalStorage('presentQuestions', questionsData)
+    setLocalStorage('attemptedQuestions',questionsForAttempt)
     dispatch(createResultRequest(calculatedResult));
     handleResultModalOpen();
     timeLeft.current = 0;

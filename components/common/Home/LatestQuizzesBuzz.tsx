@@ -4,6 +4,7 @@ import { updateQuizId } from '@/redux/slices/propSlice';
 import { fetchQuizzesRequest } from '@/redux/slices/quizSlice';
 import { fetchUserRequest, resetUserMessage } from '@/redux/slices/usersSlice';
 import { RootState } from '@/redux/store';
+import { getAccessToken } from '@/services/CommonServices';
 import styles from '@/styles/LatestQuizzesBuzz.module.css';
 import style2 from '@/styles/MeetEducators.module.css';
 import { Quiz } from '@/types/types';
@@ -19,7 +20,7 @@ const LatestQuizzesBuzz = () => {
 
   useEffect(() => {
     dispatch(fetchQuizzesRequest(''));
-    const token = localStorage.getItem('accessToken');
+    const token = getAccessToken();
     if (token) {
       dispatch(fetchUserRequest());
     }

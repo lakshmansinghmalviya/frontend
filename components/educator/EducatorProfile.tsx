@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { fetchEducatorProfileDataRequest, fetchUserRequest } from '@/redux/slices/usersSlice';
 import { RootState } from '@/redux/store';
-import { getInitials, isBase64 } from '@/services/CommonServices';
+import { getAccessToken, getInitials, isBase64 } from '@/services/CommonServices';
 import { User } from '@/types/types';
 import { Edit } from '@mui/icons-material';
 import { Avatar, Box, Button, Grid, Paper, Tooltip, Typography } from '@mui/material';
@@ -16,7 +16,7 @@ const EducatorProfile: React.FC = () => {
     const [editingUser, setEditingUser] = useState<User | null>(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('accessToken');
+        const token = getAccessToken();
         if (token) {
             dispatch(fetchUserRequest());
             dispatch(fetchEducatorProfileDataRequest());

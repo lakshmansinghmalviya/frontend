@@ -63,19 +63,19 @@ const Navbar: React.FC<NavbarProps> = ({ latestQuizzesRef, mentorsRef, aboutRef,
       <div className={styles.logo} onClick={navigateToHome}>
         <img src="/quizzy.png" alt="Logo" />
       </div>
-      <div
+      {/* <div
         className={styles.menuText}
         onClick={() => scrollToSection(latestQuizzesRef)}
       >
         Latest Quizzes
-      </div>
+      </div> */}
 
-      <div
+      {/* <div
         className={styles.menuText}
         onClick={() => scrollToSection(mentorsRef)}
       >
         Mentors
-      </div>
+      </div> */}
       <div
         className={styles.menuText}
         onClick={() => scrollToSection(aboutRef)}
