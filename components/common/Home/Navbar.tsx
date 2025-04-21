@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { fetchUserRequest } from '@/redux/slices/usersSlice';
 import { RootState } from '@/redux/store';
 import styles from '@/styles/Navbar.module.css';
-import { User } from '@/types/types';
+import { AuthResponse, User } from '@/types/types';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
@@ -16,21 +16,21 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ latestQuizzesRef, mentorsRef, aboutRef, contactRef }) => {
   const router = useRouter();
-  const { user, userMessage } = useAppSelector((state: RootState) => state.user);
-  const [userData, setUserData] = useState<User>({ ...user });
+  const { auth} = useAppSelector((state: RootState) => state.auth);
+  const [userData, setUserData] = useState<AuthResponse>({ ...auth });
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    debugger
+    // debugger
     dispatch(fetchUserRequest())
   }, [])
 
   useEffect(() => {
-    debugger
+    // debugger
     setUserData({
-      ...user
+      ...auth
     })
-  }, [userMessage])
+  }, [auth])
 
   const navigateToLogin = () => {
     router.push('/login')
@@ -90,13 +90,13 @@ const Navbar: React.FC<NavbarProps> = ({ latestQuizzesRef, mentorsRef, aboutRef,
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {
-          userData.password.trim().length == 0 &&
+          userData.refToken.trim().length == 0 &&
           <>
             <button className={styles.loginButton} onClick={navigateToLogin}>Login</button>
             <button className={styles.signupButton} onClick={navigateToSignup}>Sign Up</button>
           </>
         }
-        {userData.password.trim().length != 0 &&
+        {userData.refToken.trim().length != 0 &&
           <button className={styles.signupButton} onClick={navigateToDashboard}>Dashboard</button>
         }
       </div>

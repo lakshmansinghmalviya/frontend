@@ -25,8 +25,8 @@ export function capitalizeWords(input: string): string {
 export const isBase64 = (str: string | undefined): string => {
     const base64Regex = /^data:image\/[a-zA-Z]+;base64,/;
     if (base64Regex.test(str ?? ''))
-        return str ?? '/error.png';
-    return '/error.png';
+        return str ?? '/defaultImage.png';
+    return '/defaultImage.png';
 };
 
 export const checkIsBase64Boolean = (str: string | undefined): boolean => {

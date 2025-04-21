@@ -6,10 +6,10 @@ import { UnifiedResponse } from '@/types/types';
 import { getAccessToken, getAuthenticatedHeaderWithRefToken, getRefreshToken, logout, setLocalStorage } from '@/services/CommonServices';
 import { authEndpoints } from '@/common/endpoints/AuthEndpoint';
 import { resetAuthStateOnLogout } from './slices/authSlice';
+import { useRouter } from 'next/router';
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-const dispatch = useAppDispatch();
 
 const refreshAccessToken = async (): Promise<string | null> => {
     const refreshToken = getRefreshToken();
@@ -24,8 +24,12 @@ const refreshAccessToken = async (): Promise<string | null> => {
             body: JSON.stringify({ refToken: refreshToken }),
         });
         if (!res.ok) {
+            const dispatch = useAppDispatch();
+            const router = useRouter();
             dispatch(resetAuthStateOnLogout());
             logout();
+            router.push('/')
+
             return null;
         }
 
@@ -38,8 +42,11 @@ const refreshAccessToken = async (): Promise<string | null> => {
         return newAccessToken;
     } catch (err) {
         console.error("Token refresh failed:", err);
+        const dispatch = useAppDispatch();
+        const router = useRouter();
         dispatch(resetAuthStateOnLogout());
-        logout();        
+        logout();
+        router.push('/')
         return null;
     }
 };

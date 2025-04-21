@@ -71,8 +71,8 @@ const AttempQuiz: React.FC = () => {
     const calculatedResult = await giveQuizResult(questionsData, questionsForAttempt,
       quiz.timeLimit, timeLeft.current, resultData);
     setResultData(calculatedResult);
-    setLocalStorage('presentQuestions', questionsData)
-    setLocalStorage('attemptedQuestions',questionsForAttempt)
+    setLocalStorage('presentQuestions', JSON.stringify(questionsData))
+    setLocalStorage('attemptedQuestions',JSON.stringify(questionsForAttempt))
     dispatch(createResultRequest(calculatedResult));
     handleResultModalOpen();
     timeLeft.current = 0;
