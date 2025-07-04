@@ -14,7 +14,8 @@ import TimeCard from './cards/TimeCard';
 import ConfirmModal from './modals/ConfirmModal';
 import ResultModal from './modals/ResultModal';
 import { setLocalStorage } from '@/services/CommonServices';
-import { addIsSelectedFieldInOptions, fillIsSelectedAsTrueForClickedOption, giveQuizResult, shuffleArray, shuffleOptions} from '@/services/Result';
+// import { addIsSelectedFieldInOptions, fillIsSelectedAsTrueForClickedOption, giveQuizResult, shuffleArray, shuffleOptions} from '@/services/Result';
+import { addIsSelectedFieldInOptions, fillIsSelectedAsTrueForClickedOption, giveQuizResult, shuffleArray, shuffleOptions} from '../../services/Result';
 
 
 const AttempQuiz: React.FC = () => {
