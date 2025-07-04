@@ -7,13 +7,15 @@ import { Question, Result } from '@/types/types';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { addIsSelectedFieldInOptions, fillIsSelectedAsTrueForClickedOption, giveQuizResult, shuffleArray, shuffleOptions } from '@/services/Result';
+// import { addIsSelectedFieldInOptions, fillIsSelectedAsTrueForClickedOption, giveQuizResult, shuffleArray } from '@/services/Result';
 import Loader from '../common/Loader';
 import QuestionOptions from './cards/QuestionOptions';
 import TimeCard from './cards/TimeCard';
 import ConfirmModal from './modals/ConfirmModal';
 import ResultModal from './modals/ResultModal';
 import { setLocalStorage } from '@/services/CommonServices';
+// import { addIsSelectedFieldInOptions, fillIsSelectedAsTrueForClickedOption, giveQuizResult, shuffleArray, shuffleOptions} from '@/services/Result';
+import { addIsSelectedFieldInOptions, fillIsSelectedAsTrueForClickedOption, giveQuizResult, shuffleArray, shuffleOptions} from '../../services/Result';
 
 
 const AttempQuiz: React.FC = () => {
