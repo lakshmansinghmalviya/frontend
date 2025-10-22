@@ -1,1 +1,1 @@
-export const quizAppBaseUrl = "http://localhost:7000"
+export const quizAppBaseUrl = "https://backend-quizapp-l2zu.onrender.com"
